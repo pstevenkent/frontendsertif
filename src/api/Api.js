@@ -1,26 +1,25 @@
-// src/api/Api.js
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api', // Sesuaikan dengan port Express Backend Anda
+const API = axios.create({
+    baseURL: 'http://localhost:3000/api', 
 });
 
-// --- Peserta CRUD ---
-export const getAllPeserta = () => api.get('/peserta');
-export const addPeserta = (data) => api.post('/peserta', data);
-export const deletePeserta = (id) => api.delete(`/peserta/${id}`);
-export const editPeserta = (id, data) => api.put(`/peserta/${id}`, data); 
+// PESERTA
+export const getPeserta = () => API.get('/peserta');
+export const getPesertaDetail = (id) => API.get(`/peserta/${id}`);
+export const createPeserta = (data) => API.post('/peserta', data);
+export const updatePeserta = (id, data) => API.patch(`/peserta/${id}`, data);
+export const deletePeserta = (id) => API.delete(`/peserta/${id}`);
 
-// --- Kelas CRUD ---
-export const getAllKelas = () => api.get('/kelas');
-export const addKelas = (data) => api.post('/kelas', data);
-export const deleteKelas = (id) => api.delete(`/kelas/${id}`);
-export const editKelas = (id, data) => api.put(`/kelas/${id}`, data);
+// KELAS
+export const getKelas = () => API.get('/kelas');
+export const getKelasDetail = (id) => API.get(`/kelas/${id}`);
+export const createKelas = (data) => API.post('/kelas', data);
+export const updateKelas = (id, data) => API.patch(`/kelas/${id}`, data);
+export const deleteKelas = (id) => API.delete(`/kelas/${id}`);
 
-// --- Relasi M:M (Pendaftaran) ---
-export const getEnrolledClasses = (pesertaId) => api.get(`/enrollments/peserta/${pesertaId}`);
-export const getEnrolledPeserta = (classId) => api.get(`/enrollments/kelas/${classId}`); // Opsional, untuk melihat peserta per kelas
-export const enrollPeserta = (data) => api.post('/enrollments', data);
-export const removeEnrollment = (data) => api.delete('/enrollments', { data }); 
-
-export default api;
+//  ENROLLMENT MANY TO MANY 
+export const enrollPeserta = (data) => API.post('/enrollments', data);
+export const unenrollPeserta = (data) => API.delete('/enrollments', { data }); 
+export const getPesertaClasses = (pesertaId) => API.get(`/enrollments/peserta/${pesertaId}`);
+export const getKelasParticipants = (kelasId) => API.get(`/enrollments/kelas/${kelasId}`);

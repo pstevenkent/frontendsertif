@@ -5,7 +5,7 @@ function PesertaForm({ initialData = {}, onSave }) {
   const [data, setData] = useState({ name: '', email: '' });
 
   useEffect(() => {
-    // Isi form jika ada data awal (untuk mode Edit)
+    // Isi form jika ada data awal (untuk Edit)
     if (initialData.id) {
       setData({ name: initialData.name, email: initialData.email });
     }
@@ -14,7 +14,7 @@ function PesertaForm({ initialData = {}, onSave }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!data.name || !data.email) return alert('Nama dan Email wajib diisi.');
-    onSave(data, initialData.id); // Kirim data dan ID (jika ada) ke parent
+    onSave(data, initialData.id); 
     setData({ name: '', email: '' });
   };
 

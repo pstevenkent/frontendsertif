@@ -1,7 +1,7 @@
 // src/components/classlist.jsx
 import React from 'react';
 
-// Komponen reusable untuk menampilkan daftar kelas
+// Komponen menampilkan daftar kelas
 function ClassList({ classes, onAction, actionLabel = 'Daftar' }) {
   return (
     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
